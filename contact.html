@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact - My E-Shop</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    /* Extra styling for contact page */
+    .contact-header {
+      background: linear-gradient(135deg, #007bff, #6610f2);
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+    }
+    .contact-header h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    .contact-info {
+      background: #f8f9fa;
+      padding: 50px 0;
+      border-radius: 10px;
+    }
+    .contact-info i {
+      font-size: 1.8rem;
+      color: #007bff;
+    }
+    .contact-form {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .contact-form button {
+      background: #007bff;
+      color: white;
+      border: none;
+    }
+    .contact-form button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <section class="header_menu">
+    <div class="container-fluid px-0 shadow">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+        <a class="navbar-brand pl-5" href="index.html">
+          <img src="assets/images/logo.png" width="120" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="category.html">Categories</a></li>
+            <li class="nav-item active"><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Contact Header -->
+  <section class="contact-header">
+    <div class="container">
+      <h1>Get in Touch</h1>
+      <p class="lead mb-0">We’d love to hear from you, feel free to reach out!</p>
+    </div>
+  </section>
+
+  <!-- Contact Info -->
+  <section class="contact-info my-5">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-4 mb-4">
+          <i class="fas fa-user"></i>
+          <h5 class="mt-3">Diksha Kore</h5>
+          <p>Owner & Developer</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <i class="fas fa-map-marker-alt"></i>
+          <h5 class="mt-3">Address</h5>
+          <p>123 Green Valley, Near Central Park, Nagpur, Maharashtra - 440001</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <i class="fas fa-envelope"></i>
+          <h5 class="mt-3">Email</h5>
+          <p><a href="mailto:korediksha30@gmail.com">korediksha30@gmail.com</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="container my-5">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="contact-form">
+          <h3 class="text-center mb-4">Send a Message</h3>
+          <form id="contact-form">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" class="form-control" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+              <label>Your Email</label>
+              <input type="email" class="form-control" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea class="form-control" rows="4" placeholder="Write your message here..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-block mt-3">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-4 bg-light">
+    <p class="mb-0">&copy; 2025 My E-Shop | Designed by <strong>Diksha Kore</strong></p>
+    <div class="mt-2">
+      <a href="https://www.facebook.com/profile.php?id=61556993271553" class="text-primary mx-2"><i class="fab fa-facebook"></i></a>
+      <a href="#" class="text-info mx-2"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.instagram.com/dikshakore12?igsh=Njh3MnBsdXB0czdp" class="text-danger mx-2"><i class="fab fa-instagram"></i></a>
+      <a href="https://github.com/Dikshakore12" class="text-dark mx-2"><i class="fab fa-github"></i></a>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Optional JS to handle form (demo) -->
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(e){
+      e.preventDefault();
+      alert('Thank you, your message has been sent successfully!');
+      this.reset();
+    });
+  </script>
+</body>
+</html>

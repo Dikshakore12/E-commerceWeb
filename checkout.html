@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout - My E-Shop</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Header -->
+<section class="header_menu">
+  <div class="container-fluid px-0 shadow">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+      <a class="navbar-brand pl-5" href="index.html"><img src="assets/images/logo.png" width="120" alt="logo"></a>
+    </nav>
+  </div>
+</section>
+
+<div class="container my-5">
+  <h2>Checkout</h2>
+  <div class="row">
+    
+    <!-- Billing Details -->
+    <div class="col-md-6">
+      <form id="checkout-form">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input id="ship-name" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label>Address</label>
+          <textarea id="ship-address" class="form-control" required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input id="ship-phone" class="form-control">
+        </div>
+        <button id="place-order-btn" class="btn btn-primary">Place Order</button>
+      </form>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="col-md-6">
+      <h4>Order Summary</h4>
+      <div id="checkout-summary" class="mb-3"></div>
+      <h5>Total: <span id="checkout-total">₹0.00</span></h5>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  // -------------------- Checkout Page Rendering --------------------
+  function renderCheckoutSummary() {
+    const summaryDiv = document.getElementById('checkout-summary');
+    const totalSpan = document.getElementById('checkout-total');
+    if (!summaryDiv) return;
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let total = 0;
+    summaryDiv.innerHTML = '';
+
+    if (cart.length === 0) {
+      summaryDiv.innerHTML = '<p>Your cart is empty!</p>';
+      totalSpan.innerText = '₹0.00';
+      return;
+    }
+
+    const ul = document.createElement('ul');
+    ul.classList.add('list-group', 'list-group-flush');
+
+    cart.forEach(item => {
+      const li = document.createElement('li');
+      li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
+      li.innerHTML = `<span>${item.name}</span> <span>x${item.qty}</span> <span>₹${(item.price*item.qty).toFixed(2)}</span>`;
+      ul.appendChild(li);
+      total += item.price * item.qty;
+    });
+
+    summaryDiv.appendChild(ul);
+    totalSpan.innerText = `₹${total.toFixed(2)}`;
+  }
+
+  // -------------------- Place Order Button --------------------
+  const placeOrderBtn = document.getElementById('place-order-btn');
+  if (placeOrderBtn) {
+    placeOrderBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('ship-name').value;
+      const address = document.getElementById('ship-address').value;
+
+      if (!name || !address) {
+        alert('Please fill in your billing details!');
+        return;
+      }
+
+      alert(`Thank you ${name}! Your order has been placed.`);
+      localStorage.removeItem('cart'); // Clear cart after order
+      window.location.href = 'order_confirmation.html'; // Redirect
+    });
+  }
+
+  // Initialize
+  renderCheckoutSummary();
+</script>
+
+</body>
+</html>

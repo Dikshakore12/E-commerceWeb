@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Category - My E-Shop</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Header -->
+<section class="header_menu">
+  <div class="container-fluid px-0 shadow">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+      <a class="navbar-brand pl-5" href="index.html">
+        <img src="assets/images/logo.png" width="120" alt="logo">
+      </a>
+    </nav>
+  </div>
+</section>
+
+<!-- Category Page -->
+<div class="container my-5">
+  <div class="section_title text-center mb-5">
+    <h2>Shop by Categories</h2>
+  </div>
+
+  <div class="row" id="categories">
+    <!-- Categories will be dynamically inserted here -->
+  </div>
+</div>
+
+<!-- Footer -->
+<section class="footer_section pt-5 pb-2">
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3 col-6 pl-5">
+          <a href="index.html"><img src="assets/images/logo.png" width="150" alt="logo"></a>
+          <p>Providing a student project demo of a complete e-commerce platform built with modern web technologies.</p>
+        </div>
+        <div class="col-md-3 col-6">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="javascript:;">Offers & Discounts</a></li>
+            <li><a href="javascript:;">Get Coupon</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-6">
+          <h5>New Products</h5>
+          <ul>
+            <li><a href="javascript:;">Woman Cloth</a></li>
+            <li><a href="javascript:;">Fashion Accessories</a></li>
+            <li><a href="javascript:;">Man Accessories</a></li>
+            <li><a href="javascript:;">Rubber made Toys</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-6">
+          <h5>Support</h5>
+          <ul>
+            <li><a href="javascript:;">FAQs</a></li>
+            <li><a href="javascript:;">Terms & Conditions</a></li>
+            <li><a href="javascript:;">Privacy Policy</a></li>
+            <li><a href="javascript:;">Report a Payment Issue</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="border-top text-center mt-3">
+      <p>Copyright ©2025 All rights reserved</p>
+    </div>
+  </footer>
+</section>
+
+<div class="backtop">
+  <a id="button" href="#top" class="btn btn-lg btn-outline-danger">
+    <i class="fas fa-chevron-up text-dark"></i>
+  </a>
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+// Define categories
+const CATEGORIES = [
+  {id:1,name:'Women Clothing',img:'assets/images/category1.jfif',link:'product.html?category=Women Clothing'},
+  {id:2,name:'Men Clothing',img:'assets/images/category2.jfif',link:'product.html?category=Men Clothing'},
+  {id:3,name:'Shoes',img:'assets/images/category3.jfif',link:'product.html?category=Shoes'},
+  {id:4,name:'Accessories',img:'assets/images/accessories.jpeg',link:'product.html?category=Accessories'},
+  {id:5,name:'Kids',img:'assets/images/kid.jpeg',link:'product.html?category=Kids'},
+  {id:6,name:'Electronics',img:'assets/images/electronics.jpeg',link:'product.html?category=Electronics'}
+];
+
+// Render categories
+const container = document.getElementById('categories');
+CATEGORIES.forEach(cat => {
+  container.innerHTML += `
+    <div class="col-md-4 col-12 mb-4">
+      <div class="card shadow text-center p-2">
+        <a href="${cat.link}">
+          <img src="${cat.img}" class="img img-fluid rounded" alt="${cat.name}">
+          <div class="card-body">
+            <h5 class="card-title">${cat.name}</h5>
+          </div>
+        </a>
+      </div>
+    </div>
+  `;
+});
+</script>
+
+</body>
+</html>

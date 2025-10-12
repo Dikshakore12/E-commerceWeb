@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Search - My E-Shop</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+</head>
+<body id="top">
+
+<!-- Header -->
+<section class="header_menu">
+  <div class="container-fluid px-0 shadow">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+      <a class="navbar-brand pl-5" href="index.html">
+        <img src="assets/images/logo.png" width="120" alt="logo">
+      </a>
+      <form class="form-inline ml-auto" onsubmit="event.preventDefault(); searchProducts();">
+        <input id="search-input" class="form-control mr-2" placeholder="Search products..." type="text">
+        <button class="btn btn-outline-primary" type="submit"><i class="fa fa-search"></i></button>
+      </form>
+    </nav>
+  </div>
+</section>
+
+<!-- Search Results -->
+<section class="search_section py-5 my-5">
+  <div class="container">
+    <div class="section_title text-center mb-5">
+      <h2><i class="fas fa-search mr-2"></i>Search Products</h2>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover" id="search-results-table">
+        <thead class="thead-light">
+          <tr>
+            <th>#</th>
+            <th>Image</th>
+            <th>Product</th>
+            <th>Rating</th>
+            <th>Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="search-results"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<section class="footer_section pt-5 pb-2">
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3 col-6 pl-5">
+          <a href="index.html"><img src="assets/images/logo.png" width="150" alt="logo"></a>
+          <p>Providing a student project demo of a complete e-commerce platform built with modern web technologies.</p>
+        </div>
+        <div class="col-md-3 col-6">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="javascript:;">Offers & Discounts</a></li>
+            <li><a href="javascript:;">Get Coupon</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-6">
+          <h5>New Products</h5>
+          <ul>
+            <li><a href="javascript:;">Woman Cloth</a></li>
+            <li><a href="javascript:;">Fashion Accessories</a></li>
+            <li><a href="javascript:;">Man Accessories</a></li>
+            <li><a href="javascript:;">Rubber made Toys</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-6">
+          <h5>Support</h5>
+          <ul>
+            <li><a href="javascript:;">FAQs</a></li>
+            <li><a href="javascript:;">Terms & Conditions</a></li>
+            <li><a href="javascript:;">Privacy Policy</a></li>
+            <li><a href="javascript:;">Report a Payment Issue</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="border-top text-center mt-3">
+      <p>Copyright ©2025 All rights reserved</p>
+    </div>
+  </footer>
+</section>
+
+<div class="backtop">
+  <a id="button" href="#top" class="btn btn-lg btn-outline-danger">
+    <i class="fas fa-chevron-up text-dark"></i>
+  </a>
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+const PRODUCTS = [
+  {id:1,name:'Green Dress',price:400,img:'assets/images/product1.png',category:'Category 1', rating:3.5},
+  {id:2,name:'Blue Shirt',price:350,img:'assets/images/product2.png',category:'Category 2', rating:4},
+  {id:3,name:'Casual Shoes',price:1200,img:'assets/images/product3.png',category:'Category 1', rating:4.5},
+  {id:4,name:'Red Dress',price:800,img:'assets/images/product2.png',category:'Category 3', rating:4},
+  {id:5,name:'Black Jacket',price:1500,img:'assets/images/product1.png',category:'Category 2', rating:5},
+  {id:6,name:'Sneakers',price:999,img:'assets/images/product3.png',category:'Category 1', rating:3}
+];
+
+function searchProducts() {
+  const query = document.getElementById('search-input').value.toLowerCase();
+  const tbody = document.getElementById('search-results');
+  tbody.innerHTML = '';
+  const filtered = PRODUCTS.filter(p => p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
+
+  if(filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="6" class="text-center">No products found.</td></tr>`;
+    return;
+  }
+
+  filtered.forEach((product, index) => {
+    let stars = '';
+    for(let i=1; i<=5; i++) {
+      if(i <= Math.floor(product.rating)) stars += '<i class="fa fa-star text-warning"></i>';
+      else if(i - product.rating < 1) stars += '<i class="fa fa-star-half-alt text-warning"></i>';
+      else stars += '<i class="far fa-star text-warning"></i>';
+    }
+
+    tbody.innerHTML += `
+      <tr>
+        <td class="text-center">${index+1}</td>
+        <td><img src="${product.img}" width="100" class="img-fluid"></td>
+        <td>${product.name}</td>
+        <td>${stars}</td>
+        <td>₹${product.price}</td>
+        <td><button class="btn btn-sm btn-primary add-to-cart" data-id="${product.id}">Add to Cart</button></td>
+      </tr>
+    `;
+  });
+}
+
+// Initial render: show all products
+searchProducts();
+</script>
+
+</body>
+</html>
